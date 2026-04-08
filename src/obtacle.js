@@ -1,34 +1,44 @@
 export class Obstacle {
     constructor(container, type = 'ground') {
-        this.element = document.createElement('div');
-        this.type = type;
+        this.container = container;
+        this.type      = type;
+        this.element   = document.createElement('div');
 
         if (type === 'ground') {
-            // Rintangan bawah (Meteor)
-            this.element.className = "absolute bottom-0 w-12 h-12 text-4xl flex items-center justify-center drop-shadow-[0_0_10px_#ef4444]";
-            this.element.innerText = "☄️";
+            this.element.className = 
+                'absolute bottom-0 w-12 h-12 text-4xl ' +
+                'flex items-center justify-center ' +
+                'drop-shadow-[0_0_10px_#ef4444]';
+            this.element.innerText = '☄️';
         } else {
-            // Rintangan terbang (UFO) - Posisinya dinaikkan ke 'bottom-10'
-            // Jika alien berdiri, akan kena. Jika merunduk (scale-y-50), akan lolos.
-            this.element.className = "absolute bottom-10 w-12 h-12 text-4xl flex items-center justify-center drop-shadow-[0_0_15px_#a855f7]";
-            this.element.innerText = "🛸";
+            this.element.className = 
+                'absolute bottom-10 w-12 h-12 text-4xl ' +
+                'flex items-center justify-center ' +
+                'drop-shadow-[0_0_15px_#a855f7]';
+            this.element.innerText = '🛸';
         }
-        
-        this.position = container.offsetWidth; 
-        this.element.style.left = this.position + 'px';
+
+        // Mulai dari sisi kanan container
+        this.x = container.offsetWidth;
+        this.element.style.left = this.x + 'px';
         container.appendChild(this.element);
     }
 
-    move(speed) {
-        this.position -= speed;
-        this.element.style.left = this.position + 'px';
+    // speed dikirim dari main.js agar bisa dinaikkan dinamis
+    update(speed) {
+        this.x -= speed;
+        this.element.style.left = this.x + 'px';
+    }
+
+    isOffScreen() {
+        return this.x + this.element.offsetWidth < 0;
     }
 
     getBounds() {
         return this.element.getBoundingClientRect();
     }
 
-    remove() {
+    destroy() {
         this.element.remove();
     }
 }
