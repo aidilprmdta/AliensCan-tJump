@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Kamu bisa tambah custom style alien di sini */
+body {
+    @apply bg-slate-900 text-white;
+}
