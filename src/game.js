@@ -1,5 +1,10 @@
 import { Obstacle } from './obtacle.js';
 
+const bgMusic = new Audio('../assets/backsound.mp3');
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
+
+
 const obstacles = [];
 
 function gameLoop() {
