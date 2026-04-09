@@ -101,6 +101,30 @@ function playSound(frequency, type = 'sine', duration = 0.2) {
     oscillator.stop(audioCtx.currentTime + duration);
 }
 
+
+
+    //tst klo jelek mon maap
+    // src/main.js
+import { Menu } from './menu.js';
+
+// Instansiasi Class Menu
+const gameMenu = new Menu();   
+
+
+// Dengarkan sinyal dari class Menu
+window.addEventListener('start-game', () => {
+    gameActive = true;
+    console.log("Game Engine: Memulai Loop...");
+    // Jalankan inisialisasi player & requestAnimationFrame(gameLoop) di sini
+});
+
+window.addEventListener('update-volume', (e) => {
+    const volumeValue = e.detail / 100;
+    // Update volume audio kamu di sini
+    if (window.bgMusic) window.bgMusic.volume = volumeValue;
+});
+
+
 function gameOver() {
     gameActive = false;
     playSound(150, 'sawtooth', 0.5);
