@@ -13,6 +13,7 @@
 
     <div id="game-container" 
          x-data="{ score: 0, highScore: parseInt(localStorage.getItem('alien_high_score')) || 0, isGameOver: false }" 
+         style="background-image: url('src/assets/field.png'); background-size: auto 100%; background-position: bottom left; background-repeat: repeat-x;"
          @game-over.window=" isGameOver = true;
             if(score > highScore) { 
                 highScore = score; 
@@ -27,13 +28,13 @@
             <div x-text="score.toString().padStart(5, '0')"></div>
         </div>
         
-        <div id="alien" class="absolute bottom-0 left-10 w-12 h-12 text-5xl flex items-center justify-center drop-shadow-[0_0_15px_rgba(74,222,128,0.8)] z-10 transition-transform">
-            👽
+        <div id="alien" class="absolute bottom-[80px] left-10 w-12 h-18 flex items-center justify-center drop-shadow-[0_0_15px_rgba(74,222,128,0.8)] z-10 transition-transform">
+            <img src="src/assets/Standing.png" alt="player" class="w-full h-full object-contain">
         </div>
 
         <div x-show="isGameOver" style="display: none;" class="absolute inset-0 bg-black/80 z-50 flex flex-col items-center justify-center">
             <h1 class="text-red-500 text-4xl font-black mb-4 drop-shadow-[0_0_10px_#ef4444]">MISSION FAILED</h1>
-            <button @click="window.location.reload()" class="bg-green-500 text-black px-6 py-2 font-bold hover:bg-green-400 rounded">RETRY</button>
+            <h3 @click="window.location.reload()" class="bg-green-400 text-black px-8 py-4 rounded">RETRY</h3>
         </div>
         
     </div>
