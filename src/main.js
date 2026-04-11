@@ -13,26 +13,26 @@ let speed = 6;
 let lastLevelUpScore = 0; // Tambahan: Untuk mencegah bug suara/kecepatan berkali-kali
 
 // --- 1. KONTROL KEYBOARD DIPERBAIKI ---
-document.addEventListener("keydown", (event) => {
-  if (!gameActive) return;
+    document.addEventListener("keydown", (event) => {
+    if (!gameActive) return;
 
-  if (event.code === "Space" || event.code === "ArrowUp") {
-    player.jump();
-    playSound(400, "sine", 0.1);
-  }
+    if (event.code === "Space" || event.code === "ArrowUp") {
+        player.jump();
+        playSound(400, "sine", 0.1);
+    }
 
-  // Typo dan titik koma dihapus, parameter diubah jadi true
-  if (event.code === "ArrowDown") {
-    player.duck(true);
-  }
-});
+    // Typo dan titik koma dihapus, parameter diubah jadi true
+    if (event.code === "ArrowDown") {
+        player.duck(true);
+    }
+    });
 
 // Tambahan: Event saat tombol dilepas agar alien berdiri lagi
-document.addEventListener("keyup", (event) => {
-  if (event.code === "ArrowDown") {
-    player.duck(false);
-  }
-});
+    document.addEventListener("keyup", (event) => {
+    if (event.code === "ArrowDown") {
+        player.duck(false);
+    }
+    });
 
 // --- 1b. KONTROL TOUCH UNTUK MOBILE ---
 let touchStartY = null;
@@ -47,22 +47,22 @@ window.addEventListener("touchstart", (e) => {
   }
 });
 window.addEventListener("touchend", (e) => {
-  if (!gameActive) return;
-  if (touchStartY === null) return;
-  touchEndY = e.changedTouches[0].clientY;
-  const dist = touchStartY - touchEndY;
-  if (dist > minSwipeDist) {
-    // Swipe up = lompat
-    player.jump();
-    playSound(400, "sine", 0.1);
-  } else if (dist < -minSwipeDist) {
-    // Swipe down = duck sebentar
-    player.duck(true);
-    setTimeout(() => player.duck(false), 350);
-  }
-  touchStartY = null;
-  touchEndY = null;
-});
+    if (!gameActive) return;
+    if (touchStartY === null) return;
+    touchEndY = e.changedTouches[0].clientY;
+    const dist = touchStartY - touchEndY;
+    if (dist > minSwipeDist) {
+        // Swipe up = lompat
+        player.jump();
+        playSound(400, "sine", 0.1);
+    } else if (dist < -minSwipeDist) {
+        // Swipe down = duck sebentar
+        player.duck(true);
+        setTimeout(() => player.duck(false), 350);
+    }
+    touchStartY = null;
+    touchEndY = null;
+    });
 
 // --- 2. GAME LOOP UTAMA ---
 function gameLoop() {
