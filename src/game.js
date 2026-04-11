@@ -10,6 +10,11 @@ export class Game {
         this.player.groundY = 0;
         this.player.y       = 0;
 
+
+
+
+
+        
         // State
         this.obstacles   = [];
         this.active      = false;
