@@ -2,7 +2,7 @@
 
 > A simple and fun 2D game where aliens must survive without the ability to jump.
 
-![Game Preview](./assets/preview.png)
+![Preview](https://github.com/aidilprmdta/AliensCan-tJump/blob/main/preview.png?raw=true)
 
 ## 🎮 Description
 
